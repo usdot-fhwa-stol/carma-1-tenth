@@ -1,0 +1,11 @@
+<?xml version='1.0'?>
+
+<launch>
+
+  <!-- launch rviz with mapping configuration -->
+  <node        pkg            = 'rviz'
+               type           = 'rviz'
+               name           = 'rviz'
+               args           = '-d $(find base_mapping)/rviz/mapping.rviz'/>
+
+</launch>

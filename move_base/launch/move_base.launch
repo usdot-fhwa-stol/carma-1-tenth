@@ -1,0 +1,64 @@
+<?xml version='1.0'?>
+
+<launch>
+
+  <!-- agent properties -->
+  <arg         name           = 'car_name'
+               default        = 'car_1'/>
+  <arg         name           = 'listen_offboard'
+               default        = 'false'/>
+
+  <group       ns             = '$(arg car_name)'>
+  <!-- load VESC odometry parameters -->
+  <arg         name           = 'vesc_config'
+               default        = '$(find move_base)/config/vesc.config'/>
+  <rosparam    file           = '$(arg vesc_config)'
+               command        = 'load'/>
+
+  <!-- launch VESC node driver -->
+  <node        name           = 'vesc_driver'
+               pkg            = 'vesc_driver'
+               type           = 'vesc_driver_node'>
+  <param       name           = 'port'
+               value          = '/dev/ttyACM1'/> </node>
+
+  <!-- launch VESC odometry calculator -->
+  <node        name           = 'vesc_to_odom'
+               pkg            = 'vesc_ackermann'
+               type           = 'vesc_to_odom_node'/>
+
+  <!-- URG LiDAR node -->
+  <node        name           = 'urg_laser_scanner'
+               pkg            = 'urg_node'
+               type           = 'urg_node'>
+  <param       name           = 'serial_port'
+               value          = '/dev/ttyACM0'/>
+  <param       name           = 'serial_baud'
+               value          = '115200'/>
+  <param       name           = 'frame_id'
+               value          = '$(arg car_name)_laser'/> </node>
+
+  <!-- static transform between base_link and laser -->
+  <node        name           = 'base_laser_link'
+               pkg            = 'tf'
+               type           = 'static_transform_publisher'
+               args           = '0.15 0.0 0.0
+                                 0.0 0.0 0.0
+                                 $(arg car_name)_base_link
+                                 $(arg car_name)_laser
+                                 10'/>
+
+  <!-- joystick based command_multiplexer node -->
+  <node        name           = 'command_multiplexer'
+               pkg            = 'move_base'
+               type           = 'command_multiplexer.py'
+               args           = '$(arg car_name) $(arg listen_offboard)'
+               output         = 'screen'/>
+
+  <!-- move_base node -->
+  <node        name           = 'move_base'
+               pkg            = 'move_base'
+               type           = 'move_base.py'
+               args           = '$(arg car_name)'/> </group>
+
+</launch>

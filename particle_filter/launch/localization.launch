@@ -1,0 +1,86 @@
+<?xml version='1.0'?>
+
+<launch>
+  <arg         name           = 'car_name'
+               default        = 'car_1'/>
+  <arg         name           = 'scan_topic'
+               default        = 'car_1/scan'/>
+  <arg         name           = 'odom_topic'
+               default        = 'car_1/odom'/>
+  <arg         name           = 'angle_step'
+               default        = '18'/>
+  <arg         name           = 'max_particles'
+               default        = '4000'/>
+  <arg         name           = 'squash_factor'
+               default        = '2.2'/>
+  <arg         name           = 'viz'
+               default        = '1'/>
+  <arg         name           = 'initial_pose_x'
+               default        = '0.0'/>
+  <arg         name           = 'initial_pose_y'
+               default        = '0.0'/>
+  <arg         name           = 'initial_pose_a'
+               default        = '0'/>
+
+  <!-- launch particle filter -->
+  <node        pkg            = 'particle_filter'
+               type           = 'particle_filter.py'
+               name           = 'particle_filter'
+               args           = '$(arg car_name)'
+               output         = 'screen'>
+  <param       name           = 'scan_topic'
+               value          = '$(arg scan_topic)'/>
+  <param       name           = 'odometry_topic'
+               value          = '$(arg odom_topic)'/>
+
+  <!-- range data is downsampled by this factor -->
+  <param       name           = 'angle_step'
+               value          = '$(arg angle_step)'/>
+  <param       name           = 'max_particles'
+               value          = '$(arg max_particles)'/>
+  <param       name           = 'max_viz_particles'
+               value          = '60'/>
+  <param       name           = 'range_method'
+               value          = 'rmgpu'/>
+  <param       name           = 'squash_factor'
+               value          = '$(arg squash_factor)'/>
+  <param       name           = 'theta_discretization'
+               value          = '112'/>
+
+  <!-- max sensor range in meters -->
+  <param       name           = 'max_range'
+               value          = '6.5'/>
+  <param       name           = 'viz'
+               value          = '$(arg viz)'/>
+  <param       name           = 'fine_timing'
+               value          = '0'/>
+  <param       name           = 'publish_odom'
+               value          = '1'/>
+
+  <!-- sensor model constants -->
+  <param       name           = 'z_short'
+               value          = '0.01'/>
+  <param       name           = 'z_max'
+               value          = '0.07'/>
+  <param       name           = 'z_rand'
+               value          = '0.12'/>
+  <param       name           = 'z_hit'
+               value          = '0.75'/>
+  <param       name           = 'sigma_hit'
+               value          = '8.0'/>
+  <param       name           = 'initial_pose_x'
+               value          = '$(arg initial_pose_x)'/>
+  <param       name           = 'initial_pose_y'
+               value          = '$(arg initial_pose_y)'/>
+  <param       name           = 'initial_pose_a'
+               value          = '$(arg initial_pose_a)'/>
+  <param       name           = 'motion_dispersion_x'
+               value          = '0.05'/>
+  <param       name           = 'motion_dispersion_y'
+               value          = '0.025'/>
+  <param       name           = 'motion_dispersion_theta'
+               value          = '0.25'/>
+  <param       name           = 'rangelib_variant'
+               value          = '2'/> </node>
+
+</launch>
