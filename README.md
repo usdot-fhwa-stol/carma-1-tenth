@@ -17,6 +17,14 @@ The base package supports the following features:
 
 ## Hardware Requirements
 
+This document assumes that your hardware build includes a USB Hokuyo 2D LiDAR and a Vedder ESC (a.k.a VESC) versions 4 and above connected to a Jetson XavierNX dev-board.
+
+Verify that the LiDAR and the VESC are able to communicate with the Xavier by issuing the following command:
+
+```shell
+user@computer:~$ ls /dev/ttyACM* || ls /dev/ttyUSB*
+```
+
 ## Remote Machine Setup
 
 ## Teleop Instructions
@@ -38,4 +46,3 @@ By contributing to the Federal Highway Administration (FHWA) Connected Automated
 ## Contact
 Please click on the CARMA logo below to visit the Federal Highway Adminstration(FHWA) CARMA website. For more information, contact CARMA@dot.gov. 
 [![image](https://user-images.githubusercontent.com/49401497/73481729-7367d380-436a-11ea-9ba9-c343eb99da82.png)](https://highways.dot.gov/research/research-programs/operations/CARMA)
-
