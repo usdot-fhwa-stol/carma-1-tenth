@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <geoReference>+proj=tmerc +lat_0=40.3741110207 +lon_0=-74.46404459238 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +vunits=m +no_defs  </geoReference>
+  <node id='-106739' version='1' visible='true' lat='40.3741110207' lon='-74.46404459238' />
+  <node id='-106740' version='1' visible='true' lat='40.38475215647' lon='-74.45960285425' />
+  <node id='-106741' version='1' visible='true' lat='40.37370234142' lon='-74.46314337015' />
+  <node id='-106742' version='1' visible='true' lat='40.38457236629' lon='-74.45872308969' />
+  <node id='-106743' version='1' visible='true' lat='40.37388216061' lon='-74.46365835428' />
+  <node id='-106744' version='1' visible='true' lat='40.38465408916' lon='-74.45923807383' />
+  <way id='-101792' version='1' visible='true'>
+    <nd ref='-106739' />
+    <nd ref='-106740' />
+    <tag k='way' v='12' />
+    <tag k="subtype" v="solid" />
+    <tag k="type" v="line_thin" />
+  </way>
+  <way id='-101793' version='1' visible='true'>
+    <nd ref='-106741' />
+    <nd ref='-106742' />
+    <tag k='way' v='10' />
+    <tag k="subtype" v="solid" />
+    <tag k="type" v="line_thin" />
+  </way>
+  <way id='-101794' version='1' visible='true'>
+    <nd ref='-106743' />
+    <nd ref='-106744' />
+    <tag k='way' v='11' />
+    <tag k="subtype" v="dashed" />
+    <tag k="type" v="line_thin" />
+  </way>
+        <relation id="10" visible="true" version="1">
+		<member type="way" ref="10" role="left" />
+		<member type="way" ref="11" role="centerline" />
+		<member type="way" ref="12" role="right" />
+		<tag k="location" v="urban" />
+		<tag k="subtype" v="road" />
+		<tag k="turn_direction" v="straight" />
+		<tag k="type" v="lanelet" />
+		<tag k="one_way" v="yes"/>
+	</relation>
+</osm>
