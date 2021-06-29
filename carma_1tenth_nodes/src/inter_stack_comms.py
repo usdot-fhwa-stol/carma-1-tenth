@@ -86,6 +86,7 @@ def scale_odometry(data):
 
     out2 = TwistStamped()
     out2.header = odom.header
+    out2.header.frame_id = 'map'
     out2.twist = odom.twist.twist
 
     out3 = NavSatFix()
